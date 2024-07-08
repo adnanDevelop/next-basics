@@ -1,11 +1,20 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function ClientFetchData() {
-  const [loading, setLoading] = useState(true);
-  const [user, storeUser] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [user, storeUser] = useState([]);
+  const { data, error, isLoading } = useSWR(
+    "https://dummyjson.com/users",
+    fetcher
+  );
 
+  {
+    /* useSWR 
   const fetchUserData = async () => {
     try {
       setLoading(true);
@@ -28,17 +37,25 @@ export default function ClientFetchData() {
   useEffect(() => {
     fetchUserData();
   }, []);
+  */
+  }
 
   return (
     <div className="">
-      {loading ? (
+      {error && (
+        <div className="text-white text-[50px] grid place-items-center h-[92vh] capitalize">
+          Failed to load
+        </div>
+      )}
+
+      {isLoading ? (
         <div className="text-white text-[50px] grid place-items-center h-[92vh]">
           Loading please wait...
         </div>
       ) : (
         <div>
           <ul>
-            {user?.map((user) => (
+            {data?.users?.map((user) => (
               <li key={user.id}>
                 <Link
                   href={`/client-fetch-data/${user.id}`}
