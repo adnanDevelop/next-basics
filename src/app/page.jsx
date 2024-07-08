@@ -9,9 +9,9 @@ export default function Home() {
       <h1 className="text-[50px] text-red-500">next app</h1>
       <button
         className="btn btn-success"
-        onClick={() => router.push("/productsdkflj")}
+        onClick={() => router.push("/recipe")}
       >
-        Navigate to products page
+        Navigate to Recipe page
       </button>
     </main>
   );
