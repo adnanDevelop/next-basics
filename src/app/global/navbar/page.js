@@ -14,6 +14,9 @@ export default function Navbar() {
             <Link href={"products"}>Products</Link>
           </li>
           <li>
+            <Link href={"client-fetch-data"}>Get client Data</Link>
+          </li>
+          <li>
             <details>
               <summary>Parent</summary>
               <ul className="bg-base-100 rounded-t-none p-2">
